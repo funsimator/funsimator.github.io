@@ -1,0 +1,17 @@
+# Spielprojekt "XClimb"
+
+**XClimb** ist im 3. Semester als Projekt einer Siebenköpfigen Studenten Gruppe entstanden. Ziel war es mit der Vektoria Engine und kleinen Tragbaren Bewegungssensoren ein Bewegungsspiel zu erstellen. In dem Projekt hab ich einen großen Teil der Programmierung, sowie die Einbindung der Sensoren übernommen. Zusätzlich habe ich das [Game-Design Dokument](XClimb/Mov-X_Esenz_V2.pdf) für das Projekt geschrieben.
+## Über XClimb
+
+XClimb ist ein vom Speed-Climbing inspiriertes Bewegungsspiel, bei dem zwei Spieler im direkten Wettkampf gegeneinander antreten um als erstes ganz oben anzukommen. 
+
+## Video-Präsentation 
+
+
+
+<video id="vid1" width=100% src="MitOutro.mp4#t=10,127" type="video/mp4" controls></video>
+<script>
+document.getElementById('vid1').addEventListener('loadedmetadata', function() {
+  this.currentTime = 20;
+}, false);
+</script> 
