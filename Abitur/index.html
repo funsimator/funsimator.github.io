@@ -13,7 +13,7 @@
     
     
       
-        <title>Game of Life Kata - Portfolio Henry</title>
+        <title>Abitur - Portfolio Henry</title>
       
     
     
@@ -62,11 +62,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#game-of-life-kata" class="md-skip">
-          Zum Inhalt
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -106,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Game of Life Kata
+              Abitur
             
           </span>
         </div>
@@ -382,23 +377,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Inhaltsverzeichnis
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#conways-game-of-life" class="md-nav__link">
-    Conways Game of Life
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -412,61 +390,10 @@
                 
 
 
-<h1 id="game-of-life-kata">Game of Life Kata<a class="headerlink" href="#game-of-life-kata" title="Permanent link">&para;</a></h1>
-<p>Link zur Kata <a href="https://codingdojo.org/kata/GameOfLife/">hier</a>.</p>
-<p>Bei der <a href="https://codingdojo.org/kata/GameOfLife/">Game of Life Kata</a> geht es darum, Conways <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">"Game of Life"</a> nachzuprogrammieren, einen Startzustand laden zu können und den nächsten Zustand wieder abspeichern zu können. Das <strong>"Game of Life"</strong> ist ein spezifischer <a href="https://de.wikipedia.org/wiki/Zellul%C3%A4rer_Automat">Zellulärer Automat</a>, also kurzgesagt ein 2-Dimensionales (nicht zwingend) Feld aus Zellen, die binär entweder tot (0) oder lebendig (1) sind. Zusätzlich haben zellulärer Automaten eine Regel, die festlegt, welchen Zustand die Zelle im nächsten Schritt haben wird. Diese Regel ist immer abhängig von den <strong>Nachbarn</strong> einer Zelle. </p>
-<h2 id="conways-game-of-life">Conways Game of Life<a class="headerlink" href="#conways-game-of-life" title="Permanent link">&para;</a></h2>
-<p>Das "Game of Life" hat seinen Namen daher, dass die Regel des Automaten ein Ergebnis liefert, dass stark an die Bewegung und Entwicklung von kleinen mehrzelligen Organismen erinnert. Es gibt sich wiederholende, sich bewegende und konstante Muster. Die Regeln des "Game of Life" sind ganz einfach:</p>
-<blockquote>
-<ol>
-<li>Eine tote Zelle mit genau drei lebenden Nachbarn wird im nächsten Schritt neu geboren.</li>
-<li>Lebende Zellen mit weniger als zwei lebenden Nachbarn sterben im nächsten Schritt.</li>
-<li>Eine lebende Zelle mit zwei oder drei lebenden Nachbarn bleibt im nächsten Schritt am Leben.</li>
-<li>Lebende Zellen mit mehr als drei lebenden Nachbarn sterben im nächsten Schritt an Überbevölkerung.</li>
-</ol>
-</blockquote>
-<p>Die Nachbarn für eine Zelle sind alle <strong>direkten</strong>, sowie die <strong>diagonalen</strong> Nachbarn.</p>
-<h1 id="umsetzung">Umsetzung<a class="headerlink" href="#umsetzung" title="Permanent link">&para;</a></h1>
-<h2 id="schritt-1-zellen">Schritt 1: Zellen<a class="headerlink" href="#schritt-1-zellen" title="Permanent link">&para;</a></h2>
-<p>Ein guter Punkt um zu starten ist eine Klasse für die Zellen zu schreiben, aus denen der Automat besteht. Diese brauchen mindestens diese Attribute:</p>
-<ul>
-<li>Der aktuelle Zustand</li>
-<li>Die Position der Zelle</li>
-</ul>
-<p>An Funktionen braucht die Klasse eigentlich nur eine Funktion <code>void checknext(int nachbarn)</code>, die den nächsten Zustand der Zelle bestimmt, wen man ihr die Anzahl der lebendigen Nachbarn gibt.<br />
-<em>Beachte, dass der Zustand der Zelle erst geändert werden darf, wenn der nächste Zustand für alle Zellen berechnet wurde.</em>  </p>
-<h2 id="schritt-2-automat">Schritt 2: Automat<a class="headerlink" href="#schritt-2-automat" title="Permanent link">&para;</a></h2>
-<p>Als nächstes kann man schon den Automat schreiben. Dieser braucht natürlich ein Feld aus Zellen, das den aktuellen Zustand darstellt. Zusätzlich braucht er Funktionen, die über das ganze Feld iterieren um den nächsten Schritt vorzubereiten: <code>void prepareNextStep()</code> und eine Funktion um die Änderungen auszuführen: <code>void executeNextStep()</code>. Außerdem ist die Funktion <code>int getNeighbors(COORD pos)</code> nötig, um die Lebendigen Nachbarn einer Zelle zu berechnen.
-<em>Beachte, dass ein Verhalten für den Rand des (endlichen) Feldes festgelegt werden muss.</em></p>
-<h2 id="schritt-3-dateiformat">Schritt 3: Dateiformat<a class="headerlink" href="#schritt-3-dateiformat" title="Permanent link">&para;</a></h2>
-<p>Die wichtigsten Teile des Automaten sind jetzt vorhanden. Als nächstes müssen wir uns Gedanken über das Dateiformat machen, mit dem wir einen Zustand einlesen und dann wieder abspeichern wollen. Meine Lösung verwendet kein Format dass das ganze Feld abbildet, sondern nur die Koordinaten der lebenden Zellen speichert. Die 2-D Darstellung wird erst sichtbar, wenn man die Datei einliest. Es sind natürlich viel andere Formate möglich.</p>
-<h2 id="schritt-4-parser">Schritt 4: Parser<a class="headerlink" href="#schritt-4-parser" title="Permanent link">&para;</a></h2>
-<p>Nachdem wir das Format festgelegt habe, müssen wir eigentlich nur noch den Parser schreiben, der die Datei einlesen kann und auch wieder in eine Datei schreiben kann. Diese Funktionen können einfach Teil der Automat Klasse, da diese direkt auf dem Feld arbeiten müssen. In der Lösung sind das <code>bool loadLayout(std::string filename)</code> und <code>void saveLayout(std::string filename)</code>. In der Lösung gibt es die Möglichkeit zu pausieren, Zellen einzeln zu setzen, eine Anzahl an Schritten weiterzugehen und natürlich zu Speichern und zu Laden.</p>
-<h2 id="bedienung-der-losung">Bedienung der Lösung<a class="headerlink" href="#bedienung-der-losung" title="Permanent link">&para;</a></h2>
-<p>Beim Starten bekommt man 3 verschiedene Optionen:</p>
-<ol>
-<li>Zustand aus einer Datei laden.</li>
-<li>Zufällige Ausgangssituation</li>
-<li>Die Zellen per Hand setzen</li>
-</ol>
-<p>Danach gibt es zwei Eingabe Modi mit den folgenden Optionen:</p>
-<ul>
-<li>Pausiert:<ul>
-<li>T: Pause aufheben</li>
-<li>Q: Datei speichern</li>
-<li>O: Datei Laden</li>
-<li>WASD: Bewegen des Cursors </li>
-<li>Space: Zustand der Zelle setzten</li>
-<li>1-9: Lässt den Automaten 1-9 Schritte weiter gehen</li>
-</ul>
-</li>
-<li>Running:<ul>
-<li>T: Pausieren</li>
-<li>S: Beende das Programm</li>
-</ul>
-</li>
-</ul>
-<p>Es liegen schon ein paar Dateien mit interessanten Formationen in dem Verzeichnis <em>"start"</em> zum Beispiel führt zu einem gleichmäßigen Muster, das sich über viele Schritte ausbreitet.</p>
+  <h1>Abitur</h1>
+
+<p><embed src="Graduation_Certificate.pdf" width=100% height="900" 
+ type="application/pdf"></p>
 
               
             </article>
